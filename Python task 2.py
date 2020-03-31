@@ -19,12 +19,14 @@ def get_new_password(old_password):
         if len(new_password) >= 7:
             old_password = new_password
             return str(old_password)
+        elif len(new_password)< 7:
+            return get_new_password(old_password)
         else:
-            get_new_password(old_password)
+            return get_new_password(old_password)
     elif num == 'no':
         return str(old_password)
     elif num != 'yes' or num != 'no':
-        get_new_password(old_password)
+        return get_new_password(old_password)
 
 def program():
     details=get_details()
@@ -32,14 +34,13 @@ def program():
     print ('your password is: ' +str(user_password))
     user_password=get_new_password(user_password)
     print ('your new password is: ' +str(user_password))
-    details.append(str(user_password))
     return details
 
 def main_program(d):
     d.append(program())
     decision = input("Do you want to input another user (yes or no): \n").lower()
     if decision == 'yes':
-        main_program(d)
+        return main_program(d)
     elif decision == 'no':
         return (d)
 
@@ -47,8 +48,9 @@ data=[]
 
 data.append(main_program(data))
 data.pop(-1)
-labels=['First Name:','Last Name:','Email:','Password:']
-print(data)
+labels=['First Name:','Last Name:','Email:']
+
+print('*** HERE ARE THE DETAILS OF THE USERS ***')
 for i in range(0, len(data)):
     print('User {0}'.format(i+1) + ' Details')
     for x in range(0,len(data[i])):
