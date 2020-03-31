@@ -34,6 +34,7 @@ def program():
     print ('your password is: ' +str(user_password))
     user_password=get_new_password(user_password)
     print ('your new password is: ' +str(user_password))
+    details.append(str(user_password))
     return details
 
 def main_program(d):
@@ -48,7 +49,7 @@ data=[]
 
 data.append(main_program(data))
 data.pop(-1)
-labels=['First Name:','Last Name:','Email:']
+labels=['First Name:','Last Name:','Email:','Password:']
 
 print('*** HERE ARE THE DETAILS OF THE USERS ***')
 for i in range(0, len(data)):
